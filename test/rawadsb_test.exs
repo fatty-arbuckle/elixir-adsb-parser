@@ -12,10 +12,10 @@ defmodule RawAdsbTest do
     # 010101110110000010011000
 
     expected = %RawAdsb{
-      df: 17,
-      ca: 5,
+      downlink_format: 17,
+      capabilities: 5,
       icao: 4735190,
-      tc: 4,
+      type_code: 4,
       data: 49217938861280,
       parity: 5726360
     }

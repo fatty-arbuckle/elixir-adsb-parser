@@ -3,8 +3,8 @@ defmodule RawAdsb do
   Defines and parses the raw adsb packet
   """
 
-  @enforce_keys [:df, :ca, :icao, :tc, :data, :parity]
-  defstruct [:df, :ca, :icao, :tc, :data, :parity]
+  @enforce_keys [:downlink_format, :capabilities, :icao, :type_code, :data, :parity]
+  defstruct [:downlink_format, :capabilities, :icao, :type_code, :data, :parity]
 
   @doc """
   Parse ADS-B messages
@@ -12,19 +12,19 @@ defmodule RawAdsb do
   """
   def parse(input) do
     <<
-      df      :: size(5),
-      ca      :: size(3),
-      icao    :: size(24),
-      tc      :: size(5),
-      data    :: size(51),
-      parity  :: size(24)
+      downlink_format :: size(5),
+      capabilities    :: size(3),
+      icao            :: size(24),
+      type_code       :: size(5),
+      data            :: size(51),
+      parity          :: size(24)
     >> = input
 
     %RawAdsb{
-      df: df,
-      ca:  ca,
+      downlink_format: downlink_format,
+      capabilities:  capabilities,
       icao: icao,
-      tc: tc,
+      type_code: type_code,
       data: data,
       parity: parity
     }
